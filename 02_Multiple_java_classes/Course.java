@@ -7,6 +7,7 @@ public class Course {
     private String title;
     private ArrayList<Student> students;
     private int student_count;
+    public static int course_num;
     
 
     public Course(Integer id, String name, String title) {
@@ -14,6 +15,7 @@ public class Course {
         this.name = name;
         this.title = title;
         this.students = new ArrayList<Student>();
+        course_num++;
     }
 
     public String getCourseInfo() {
