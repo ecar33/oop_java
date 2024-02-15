@@ -27,11 +27,11 @@ public class Pizza {
 		this.sauce = sauce;
 	}
 
-	public ArrayList<PizzaTopping> getTopping() {
+	public ArrayList<PizzaTopping> getToppings() {
 		return this.toppings;
 	}
 
-	public void setTopping(ArrayList<PizzaTopping> toppings) {
+	public void setToppings(ArrayList<PizzaTopping> toppings) {
 		this.toppings = toppings;
 	}
 
@@ -39,23 +39,21 @@ public class Pizza {
 		this.toppings.add(topping);
 	}
 
-    public void getPizza() {
+    public void getPizzaInfo() {
         System.out.println("\nYour pizza is ready!");
         System.out.println("********************");
-        String toppingsString = "Toppings:\n";
 
         if (!toppings.isEmpty()) {
             for (PizzaTopping topping : toppings) {
-                toppingsString += topping.toString() + '\n';
+				System.out.println(topping.toNiceString());
             }
-            System.out.println(toppingsString);
         }
         if (crust != null) {
             System.out.println(crust.toNiceString());
-            System.out.println("Made with: " + crust.getIngredient() + "\n");
+            System.out.println("Made with: " + crust.getIngredient());
 
             if (crust.toString() == "Thick Crust") {
-                System.out.println("\nDeep Dish Style: " + crust.getDeepDish());
+                System.out.println("Deep Dish Style: " + crust.getDeepDish());
             }
         }
         if (sauce != null) {
