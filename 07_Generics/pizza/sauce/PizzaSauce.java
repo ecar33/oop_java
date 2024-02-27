@@ -1,5 +1,5 @@
 package pizza.sauce;
-import pizza.topping.MenuItem;
+import pizza.MenuItem;
 
 public abstract class PizzaSauce implements MenuItem {
     public abstract String toString();

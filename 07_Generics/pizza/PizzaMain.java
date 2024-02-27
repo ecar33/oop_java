@@ -329,11 +329,12 @@ public class PizzaMain {
         inputCrustChoice();
         inputCrustIngredient();
         inputSauceChoice();
-        showPizza();
+        String pizzaString = showPizza();
+        System.out.println(pizzaString);
     }
 
-    private void showPizza() {
-        pizza.getPizzaInfo();
+    private String showPizza() {
+        return pizza.toNiceString();
     }
 
     public static void main(String[] args) {

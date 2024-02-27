@@ -1,16 +1,17 @@
 package pizza;
+
 import java.util.ArrayList;
+import java.util.Collections;
 
 import pizza.sauce.PizzaSauce;
-import pizza.topping.MenuItem;
 import pizza.topping.PizzaTopping;
 
-public class Pizza implements MenuItem{
+public class Pizza implements MenuItem {
 	private PizzaCrust crust;
 	private PizzaSauce sauce;
 	private ArrayList<PizzaTopping> toppings;
 	private ArrayList<MenuItem> menuItems;
-	
+
 	public Pizza() {
 		this.crust = null;
 		this.sauce = null;
@@ -61,30 +62,21 @@ public class Pizza implements MenuItem{
 		this.toppings.add(topping);
 	}
 
-    public void getPizzaInfo() {
-        System.out.println("\nYour pizza is ready!");
-        System.out.println("********************");
+	public void sortMenuItemsByPrice() {
+		Collections.sort(this.menuItems, new MenuItemPriceComparator());
+	}
 
-        if (!toppings.isEmpty()) {
-            for (PizzaTopping topping : toppings) {
-				System.out.println(topping.toNiceString());
-            }
-        }
-        if (crust != null) {
-            System.out.println(crust.toNiceString());
-            System.out.println("Crust made with: " + crust.getIngredient());
+	public String toNiceString() {
+		String result = "";
+		System.out.println("\nYour pizza is ready!");
+		System.out.println("********************");
+		sortMenuItemsByPrice();
 
-            if (crust.toString() == "Thick Crust") {
-                System.out.println("Deep Dish Style: " + crust.getDeepDish());
-            }
-        }
-        if (sauce != null) {
-            System.out.println(sauce.toNiceString());
-        }
-
-		if (!menuItems.isEmpty()) {
-			System.out.println("Total price: $" + this.getPrice());
+		for (MenuItem item : this.menuItems) {
+			result += item.toNiceString() + '\n';
 		}
-    }
+
+		return result;
+	}
 
 }
