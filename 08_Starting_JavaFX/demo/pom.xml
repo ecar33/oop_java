@@ -33,7 +33,7 @@
             </plugin>
             <plugin>
                 <groupId>org.openjfx</groupId>
-                <artifactId>javafx-maven-plugin</artifactId>
+                <artifactId>javafx-maven-plugin</artifactId> <!-- Do 'mvn clean javafx:run'-->
                 <version>0.0.6</version> <!-- Ensure this is the correct version -->
                 <configuration>
                     <mainClass>com.exercise_8.App</mainClass>
