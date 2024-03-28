@@ -1,5 +1,4 @@
 package com.pizzaburger.pizza;
-import com.pizzaburger.burger.topping.BaconTopping;
 import com.pizzaburger.menuitem.AbstractMenuItem;
 import com.pizzaburger.pizza.crust.*;
 import com.pizzaburger.pizza.topping.*;
@@ -22,7 +21,7 @@ public class PizzaTest {
         pizza = new Pizza();
         pizza.addComponent(new ThinCrust()); 
         pizza.addComponent(new TomatoSauce()); 
-        pizza.addComponent(new BaconTopping());
+        pizza.addComponent(new PepperoniTopping());
         pizza.addComponent(new SausageTopping());
     }
 
