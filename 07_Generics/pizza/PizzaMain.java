@@ -1,35 +1,22 @@
 package pizza;
-import java.util.ArrayList;
 import java.util.Scanner;
 
-import pizza.crust.ThickCrust;
-import pizza.crust.ThinCrust;
-import pizza.sauce.AlfredoSauce;
-import pizza.sauce.PizzaSauce;
-import pizza.sauce.TomatoSauce;
-import pizza.topping.BaconTopping;
-import pizza.topping.CheddarTopping;
-import pizza.topping.HamTopping;
-import pizza.topping.HavartiTopping;
-import pizza.topping.MozzarellaTopping;
-import pizza.topping.PepperTopping;
-import pizza.topping.PepperoniTopping;
-import pizza.topping.PizzaTopping;
-import pizza.topping.ProvoloneTopping;
-import pizza.topping.SausageTopping;
-import pizza.topping.SquashTopping;
-import pizza.topping.TomatoTopping;
-import pizza.topping.ZucchiniTopping;
+import pizza.crust.*;
+import pizza.sauce.*;
+
 
 public class PizzaMain {
-    private Pizza pizza;
-    private Scanner input;
+    Pizza pizza;
+    Scanner input;
+
+    public PizzaMain() {
+        this.pizza = new Pizza();
+        this.input = new Scanner(System.in);
+    }
 
     private void inputToppingsChoice() {
         int userInput = 0;
-        ArrayList<PizzaTopping> toppings = new ArrayList<>();
         int toppingsCount = 0;
-        PizzaTopping topping = null;
         boolean validInput;
 
         System.out.println("How many toppings would you like? (Maximum of 4)");
@@ -50,7 +37,7 @@ public class PizzaMain {
             }
         }
 
-        while (toppingsCount != 0) {
+        while (toppingsCount > 0) {
             System.out.print("""
                     What kind of toppings would you like:
                         How many toppings?
@@ -84,76 +71,14 @@ public class PizzaMain {
                 }
             }
 
-            switch (userInput) {
-                case 1:
-                    topping = new SausageTopping();
-                    toppings.add(topping);
-                    break;
-                case 2:
-                    topping = new PepperoniTopping();
-                    toppings.add(topping);
-                    break;
-                case 3:
-                    topping = new SquashTopping();
-                    toppings.add(topping);
-                    break;
-                case 4:
-                    topping = new ZucchiniTopping();
-                    toppings.add(topping);
-                    break;
-                case 5:
-                    topping = new PepperTopping();
-                    toppings.add(topping);
-                    break;
-                case 6:
-                    topping = new MozzarellaTopping();
-                    toppings.add(topping);
-                    break;
-                case 7:
-                    topping = new CheddarTopping();
-                    toppings.add(topping);
-                    break;
-                case 8:
-                    topping = new ProvoloneTopping();
-                    toppings.add(topping);
-                    break;
-                case 9:
-                    topping = new HamTopping();
-                    toppings.add(topping);
-                    break;
-                case 10:
-                    topping = new BaconTopping();
-                    toppings.add(topping);
-                    break;
-                case 11:
-                    topping = new TomatoTopping();
-                    toppings.add(topping);
-                    break;
-                case 12:
-                    topping = new HavartiTopping();
-                    toppings.add(topping);
-                    break;
-                case 13:
-                    if (toppings.isEmpty()) {
-                        System.out.println("You haven't selected any toppings yet!");
-                    } else {
-                        for (PizzaTopping top : toppings) {
-                            System.out.println(top.toString());
-                        }
-                    }
-                    break;
-                default:
-                    System.out.println("Incorrect input for topping.");
-                    break;
-            }
-
             if (userInput != 13) {
                 toppingsCount -= 1;
-                pizza.addMenuItem(topping);
+                pizza.addTopping(userInput);
+            } else {
+                pizza.displayToppings();
             }
         }
 
-        pizza.setToppings(toppings);
 
     }
 
@@ -319,10 +244,7 @@ public class PizzaMain {
         }
     }
 
-    public PizzaMain() {
-        pizza = new Pizza();
-        input = new Scanner(System.in);
-    }
+
 
     public void runMenu() {
         inputToppingsChoice();

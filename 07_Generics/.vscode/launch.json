@@ -14,8 +14,8 @@
             "type": "java",
             "name": "PizzaMain",
             "request": "launch",
-            "mainClass": "PizzaMain",
-            "projectName": "05_Interfaces_b50c4b6"
+            "mainClass": "pizza.PizzaMain",
+            "projectName": "07_Generics_2d2a8516"
         }
     ]
 }

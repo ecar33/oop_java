@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.exercise_12.PrimaryController" spacing="10">
+   <padding>
+       <Insets top="10" right="10" bottom="10" left="10"/>
+   </padding>
+   <TextField fx:id="nameField" promptText="Enter your name"/>
+   <TextField fx:id="numberField" promptText="Enter your number"/>
+   <TextField fx:id="emailField" promptText="Enter your email"/>
+   <Button fx:id="submitButton" text="Submit" onAction="#handleSubmitButtonAction"/>
+   <TextArea fx:id="outputArea" editable="false" wrapText="true"/>
+</VBox>
