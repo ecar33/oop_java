@@ -1,5 +1,4 @@
 package pizza.crust;
-import pizza.PizzaCrust;
 
 public class ThickCrust extends PizzaCrust {
     @Override

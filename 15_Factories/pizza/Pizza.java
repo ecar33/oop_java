@@ -3,19 +3,33 @@ package pizza;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import pizza.crust.PizzaCrust;
 import pizza.sauce.PizzaSauce;
 import pizza.topping.PizzaTopping;
 
 import pizza.topping.ToppingFactory;
 import pizza.topping.ToppingMap;
 
+import pizza.sauce.SauceMap;
+import pizza.sauce.SauceFactory;
+
+import pizza.crust.CrustMap;
+import pizza.crust.CrustFactory;
+
 public class Pizza implements MenuItem {
 	private PizzaCrust crust;
 	private PizzaSauce sauce;
 	private ArrayList<PizzaTopping> toppings;
 	private ArrayList<MenuItem> menuItems;
+	
 	private ToppingFactory toppingFactory;
 	private ToppingMap toppingMap;
+
+	private SauceMap sauceMap;
+	private SauceFactory sauceFactory;
+
+	private CrustMap crustMap;
+	private CrustFactory crustFactory;
 
 	public Pizza() {
 		this.crust = null;
@@ -25,6 +39,10 @@ public class Pizza implements MenuItem {
 		this.toppingMap = new ToppingMap();
 		this.toppingFactory = new ToppingFactory(toppingMap);
 		this.toppings = new ArrayList<>();
+		this.sauceMap = new SauceMap();
+		this.sauceFactory = new SauceFactory(sauceMap);
+		this.crustMap = new CrustMap();
+		this.crustFactory = new CrustFactory(crustMap);
 	}
 
 	public Double getPrice() {
@@ -46,7 +64,12 @@ public class Pizza implements MenuItem {
 		return this.crust;
 	}
 
-	public void setCrust(PizzaCrust crust) {
+	public void setCrust(int userInput) {
+		PizzaCrust crust = crustFactory.createCrust(userInput);
+		if (crust != null) {
+			addMenuItem(crust);
+			System.out.println("Added " + crust.getClass().getSimpleName());
+		}
 		this.crust = crust;
 	}
 
@@ -54,7 +77,12 @@ public class Pizza implements MenuItem {
 		return this.sauce;
 	}
 
-	public void setSauce(PizzaSauce sauce) {
+	public void setSauce(int userInput) {
+		PizzaSauce sauce = sauceFactory.createSauce(userInput);
+		if (sauce != null) {
+			addMenuItem(sauce);
+			System.out.println("Added " + sauce.getClass().getSimpleName());
+		}
 		this.sauce = sauce;
 	}
 

@@ -1,9 +1,6 @@
 package pizza;
 import java.util.Scanner;
 
-import pizza.crust.*;
-import pizza.sauce.*;
-
 
 public class PizzaMain {
     Pizza pizza;
@@ -84,7 +81,6 @@ public class PizzaMain {
 
     private void inputSauceChoice() {
         int userInput = 0;
-        PizzaSauce sauce = null;
 
         System.out.println("""
                 What kind of sauce would you like?
@@ -108,25 +104,13 @@ public class PizzaMain {
             }
         }
 
-        switch (userInput) {
-            case 1:
-                sauce = new TomatoSauce();
-                pizza.setSauce(sauce);
-                pizza.addMenuItem(sauce);
-                break;
-            case 2:
-                sauce = new AlfredoSauce();
-                pizza.setSauce(sauce);
-                pizza.addMenuItem(sauce);
-                break;
-        }
+        pizza.setSauce(userInput);
 
     }
 
     private void inputCrustChoice() {
         Boolean validInput = false;
         int userInput = 0;
-        PizzaCrust crust = null;
 
         System.out.println("""
                 What kind of crust would you like?
@@ -148,108 +132,93 @@ public class PizzaMain {
             }
         }
 
-        switch (userInput) {
-            case 1:
-                crust = new ThinCrust();
-                pizza.setCrust(crust);
-                pizza.addMenuItem(crust);
-                break;
-            case 2:
-                crust = new ThickCrust();
-                pizza.setCrust(crust);
-                inputDeepDish();
-                pizza.addMenuItem(crust);
-                break;
-            default:
-                System.out.println("\nInvalid option selected\n");
-        }
+        pizza.setCrust(userInput);
     }
 
-    private void inputCrustIngredient() {
-        Boolean validInput = false;
-        int userInput = 0;
-        PizzaCrust crust = pizza.getCrust();
-        System.out.println("""
-                What kind of crust ingredient would you like?
-                1 - All Purpose Flour
-                2 - Whole Wheat Flour
-                3 - Cauliflower
-                    """);
+    // private void inputCrustIngredient() {
+    //     Boolean validInput = false;
+    //     int userInput = 0;
+    //     PizzaCrust crust = pizza.getCrust();
+    //     System.out.println("""
+    //             What kind of crust ingredient would you like?
+    //             1 - All Purpose Flour
+    //             2 - Whole Wheat Flour
+    //             3 - Cauliflower
+    //                 """);
 
-        while (!validInput) {
-            try {
-                userInput = Integer.parseInt(input.nextLine().trim());
+    //     while (!validInput) {
+    //         try {
+    //             userInput = Integer.parseInt(input.nextLine().trim());
 
-                if (userInput < 1 || userInput > 3) {
-                    System.out.println("Please select between choice 1 and 2.");
-                } else {
-                    validInput = true;
-                }
+    //             if (userInput < 1 || userInput > 3) {
+    //                 System.out.println("Please select between choice 1 and 2.");
+    //             } else {
+    //                 validInput = true;
+    //             }
 
-            } catch (NumberFormatException e) {
-                System.out.println("Failed to get correct input, try again.");
-            }
+    //         } catch (NumberFormatException e) {
+    //             System.out.println("Failed to get correct input, try again.");
+    //         }
 
-            switch (userInput) {
-                case 1:
-                    crust.setIngredient("All Purpose Flour");
-                    System.out.println(crust.getIngredient());
-                    break;
-                case 2:
-                    crust.setIngredient("Whole Wheat Flour");
-                    System.out.println(crust.getIngredient());
-                    break;
-                case 3:
-                    crust.setIngredient("Cauliflower");
-                    System.out.println(crust.getIngredient());
-                    break;
-                default:
-                    System.out.println("\nInvalid option selected\n");
-            }
-        }
+    //         switch (userInput) {
+    //             case 1:
+    //                 crust.setIngredient("All Purpose Flour");
+    //                 System.out.println(crust.getIngredient());
+    //                 break;
+    //             case 2:
+    //                 crust.setIngredient("Whole Wheat Flour");
+    //                 System.out.println(crust.getIngredient());
+    //                 break;
+    //             case 3:
+    //                 crust.setIngredient("Cauliflower");
+    //                 System.out.println(crust.getIngredient());
+    //                 break;
+    //             default:
+    //                 System.out.println("\nInvalid option selected\n");
+    //         }
+    //     }
 
-    }
+    // }
 
-    private void inputDeepDish() {
-        Boolean validInput = false;
-        String userInputString = null;
-        PizzaCrust crust = pizza.getCrust();
+    // private void inputDeepDish() {
+    //     Boolean validInput = false;
+    //     String userInputString = null;
+    //     PizzaCrust crust = pizza.getCrust();
 
-        System.out.println("""
-                Would you like deep dish crust?
-                - (y)
-                - (n)
-                    """);
-        while (!validInput) {
-            userInputString = input.nextLine().trim();
+    //     System.out.println("""
+    //             Would you like deep dish crust?
+    //             - (y)
+    //             - (n)
+    //                 """);
+    //     while (!validInput) {
+    //         userInputString = input.nextLine().trim();
 
-            if (!userInputString.isEmpty()) {
-                char decision = userInputString.charAt(0);
+    //         if (!userInputString.isEmpty()) {
+    //             char decision = userInputString.charAt(0);
 
-                switch (decision) {
-                    case 'y':
-                        crust.setDeepDish(true);
-                        validInput = true;
-                        break;
-                    case 'n':
-                        crust.setDeepDish(false);
-                        validInput = true;
-                        break;
-                    default:
-                        System.out.println("Please enter yes/no only.");
-                }
-            } else {
-                System.out.println("Input cannot be empty, try again.");
-            }
-        }
-    }
+    //             switch (decision) {
+    //                 case 'y':
+    //                     crust.setDeepDish(true);
+    //                     validInput = true;
+    //                     break;
+    //                 case 'n':
+    //                     crust.setDeepDish(false);
+    //                     validInput = true;
+    //                     break;
+    //                 default:
+    //                     System.out.println("Please enter yes/no only.");
+    //             }
+    //         } else {
+    //             System.out.println("Input cannot be empty, try again.");
+    //         }
+    //     }
+    // }
 
 
 
     public void runMenu() {
         inputToppingsChoice();
         inputCrustChoice();
-        inputCrustIngredient();
         inputSauceChoice();
         String pizzaString = showPizza();
         System.out.println(pizzaString);
